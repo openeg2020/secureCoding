@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>게시글 조회</title>
+</head>
+
+<th:block layout:fragment="custom_css">
+	<link th:href="@{../../css/view.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</th:block>
+
+<th:block layout:fragment="custom_js">
+	<script th:inline="javascript">
+		function errCodeCheck() {
+			/* <![CDATA[ */
+			var errCode = /*[[ ${errCode }]]*/{};
+			/* ]]> */
+			var errCode2 = errCode[0]
+			if (errCode2 != null || errCode2 != "") {
+				switch (errCode2) {
+					case '1':
+						alert("잘못된 접근 경로입니다!");
+						break;
+					case '2':
+						alert("댓글이 있어 글을 삭제하실 수 없습니다!");
+						break;
+				}
+			}
+		}
+
+		function commentDelete(commentIdx, linkedArticleNum) {
+			if (confirm("선택하신 댓글을 삭제하시겠습니까?")) {
+				location.href = "commentDelete?idx=" + commentIdx + "&linkedArticleNum=" + linkedArticleNum;
+				alert("댓글이 삭제되었습니다.");
+			}
+		}
+
+		function moveAction(where) {
+			/* <![CDATA[ */
+			var boardIdx = /*[[ ${board.idx }]]*/{};
+			/* ]]> */
+			switch (where) {
+				case 1:
+					if (confirm("게시글을 삭제하시겠습니까?")) {
+						location.href = "delete?idx=" + boardIdx;
+					}
+					break;
+
+				case 2:
+					if (confirm("글을 수정하시겠습니까?")) {
+						location.href = "modify?idx=" + boardIdx;
+					}
+					break;
+
+				case 3:
+					location.href = "list";
+					break;
+
+				case 4:
+					if (confirm("글을 추천하시겠습니까?")) {
+						location.href = "recommend?idx=" + boardIdx;
+					}
+					break;
+			}
+		}
+
+		$(function () {
+			errCodeCheck();
+		})
+	</script>
+</th:block>
+
+<div layout:fragment="content">
+	<div id="contents">
+		<h3 th:utext="${board.subject}"></h3>
+		<table class="boardView">
+			<tr>
+				<th>작성자</th>
+				<td th:text="${board.writer}" class="writer"></td>
+				<td class="icon"><i class="fas fa-eye"></i></td>
+				<td th:text="${board.hitcount}" class="hit"></td>
+				<td class="icon"><i class="fas fa-thumbs-up"></i></td>
+				<td th:text="${board.recommendcount}" class="recommend"></td>
+				<th class="wdate">작성일</th>
+				<td th:text="${board.writeDate}" class="writeDate"></td>
+			</tr>
+			<tr th:if="${board.fileName != null }">
+				<th class="attachment">첨부파일</th>
+				<td colspan="7" class="attachment">
+					<a th:href="@{../files/{fileName}(fileName=${board.fileName})}" target="_blank"
+						th:text="${board.fileName}"></a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="8" class="boardContent" th:text="${board.content}"></td>
+			</tr>
+		</table>
+		<table class="commentView">
+			<tr>
+				<th colspan="4" class="ctitle">댓글</th>
+			</tr>
+			<tr th:each="comment:${commentList}" class="comments">
+				<td class="cwriter" th:text="${comment.writer}"></td>
+				<td class="commentContent" th:text="${comment.content}"></td>
+				<td class="cwdate" th:text="${comment.writeDate}"></td>
+				<td th:if="${comment.writerId==session.userId}" class="crbtn"
+					th:onclick="|javascript:commentDelete(${comment.idx}, ${board.idx})|" th:text="삭제" />
+				</td>
+			</tr>
+			<tr class="cwrite">
+				<td class="cwriteTitle">댓글 쓰기</td>
+				<td class="content2" colspan="3">
+					<form action="commentWrite" method="post">
+						<input type="hidden" id="writer" name="writer" th:value="${session.userName}" />
+						<input type="hidden" id="writerId" name="writerId" th:value="${session.userId}" />
+						<input type="hidden" id="linkedArticleNum" name="linkedArticleNum" th:value="${board.idx}" />
+						<textarea id="cwcontent" name="content" class="commentForm1"></textarea>
+						<input type="submit" th:value="확인" class="btn btn-primary" />
+					</form>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<center>
+			<div th:if="${board.writerId == session.userId}" class="btnGroup">
+				<input type="button" value="삭제" class="btn btn-danger" th:onclick="moveAction(1)" />
+				<input type="button" value="수정" class="btn btn-warning" th:onclick="moveAction(2)" />
+				<input type="button" value="목록" class="btn btn-secondary" th:onclick="moveAction(3)" />
+			</div>
+			<div th:unless="${board.writerId == session.userId}" class="btnGroup">
+				<input type="button" value="추천" class="btn btn-success" th:onclick="moveAction(4)" />
+				<input type="button" value="목록" class="btn btn-secondary" th:onclick="moveAction(3)" />
+			</div>
+		</center>
+	</div>
+</div>
+
+</html>

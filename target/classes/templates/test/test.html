@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>시큐어코딩 테스트</title>
+</head>
+
+<th:block layout:fragment="custom_css">
+	<link th:href="@{../../css/test.css}" rel="stylesheet" />
+</th:block>
+
+<th:block layout:fragment="custom_js">
+	<script src="../../js/webtoolkit.base64.js"></script>
+	<script src="../../js/jquery-1.7.1.js"></script>
+	<script th:inline="javascript">
+		$(function () {
+			$("#labs div.hint").hide();
+			$("#div0").show();
+
+			$('.menu').css('cursor', 'pointer').click(function () {
+
+				$('#result').html('');
+				$("#div0").hide();
+				$('.hint').hide();
+				$('#div' + $(this).attr('no')).show();
+
+				if (typeof (history.pushState) == 'function') {
+					var curl = location.href;
+					curl = curl.replace(/\?no=([0-9]+)/ig, '');
+					curl += '?no=' + $(this).attr('no');
+					history.pushState('', '', curl);
+				}
+			});
+
+			$('.menu').click(function () {
+				$('#test-result').html('');
+			});
+
+			$('#button1').click(
+				function () {
+
+					// 	    	    	 var formData={data:Base64.encode(form1.data.value)};
+					var formData = $("#form1").serializeArray();
+					var URL = $("#form1").attr("action");
+					$('#result').empty();
+					$.post(URL,
+						formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#test-result').html('');
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append().text(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button2').click(
+				function () {
+					var formData = $("#form2").serializeArray();
+					var URL = $("#form2").attr("action");
+					$('#result').empty();
+					$.post(URL,
+						formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button3').click(
+				function () {
+					var formData = $("#form3").serializeArray();
+					var URL = $("#form3").attr("action");
+					$('#result').empty();
+					$.post(URL,
+						formData,
+						function (data, textStatus, jqXHR) {
+							var uri_dec = decodeURIComponent(data);
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(uri_dec);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button4').click(
+				function () {
+					var formData = $("#form4").serializeArray();
+					var URL = $("#form4").attr("action");
+					$('#result').empty();
+					$.post(URL,
+						formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button41').click(
+				function () {
+					var formData = $("#form41").serializeArray();
+					var URL = $("#form41").attr("action");
+					$('#result').empty();
+					$.post(URL,
+						formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button5').click(
+				function () {
+					var formData = $("#form5").serializeArray();
+					var URL = $("#form5").attr("action");
+					$('#result').empty();
+					$.post(URL,
+						formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button6').click(
+				function () {
+					var formData = $("#form6").serializeArray();
+					var URL = $("#form6 ").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button15').click(
+				function () {
+					var formData = $("#form15").serializeArray();
+					var URL = $("#form15 ").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button25').click(
+				function () {
+					var formData = $("#form15").serializeArray();
+					var URL = $("#form15 ").attr("action");
+					$('#result').empty();
+					$.get(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button7').click(
+				function () {
+					var formData = $("#form7").serializeArray();
+					var URL = $("#form7").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button8').click(
+				function () {
+					var formData = $("#form8").serializeArray();
+					var URL = $("#form8").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							window.open(data);
+							// 	   	    		           $('#result').append(data); 
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button9').click(
+				function () {
+					var formData = $("#form9").serializeArray();
+					var URL = $("#form9").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button10').click(
+				function () {
+					var formData = $("#form10").serializeArray();
+					var URL = $("#form10").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button11').click(
+				function () {
+					var formData = $("#form11").serializeArray();
+					var URL = $("#form11").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button12').click(
+				function () {
+					var formData = $("#form12").serializeArray();
+					var URL = $("#form12").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button13').click(
+				function () {
+					var formData = $("#form13").serializeArray();
+					var URL = $("#form13").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패: " + textStatus);
+					});
+				});
+			$('#button14').click(
+				function () {
+					var formData = $("#form14").serializeArray();
+					var URL = $("#form14").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+			$('#button16').click(
+				function () {
+					var formData = $("#form16").serializeArray();
+					var URL = $("#form16").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+			$('#button17').click(
+				function () {
+					var formData = $("#form17").serializeArray();
+					var URL = $("#form17").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button18').click(
+				function () {
+					var formData = $("#form18").serializeArray();
+					var URL = $("#form18").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button19').click(
+				function () {
+					var formData = $("#form19").serializeArray();
+					var URL = $("#form19").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button20').click(
+				function () {
+					var formData = $("#form20").serializeArray();
+					var URL = $("#form20").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+			$('#button21').click(
+				function () {
+					var formData = $("#form21").serializeArray();
+					var URL = $("#form21").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							document.write(unescape(data));
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+
+			$('#button30').click(
+				function () {
+					var formData = $("#form30").serializeArray();
+					var URL = $("#form30").attr("action");
+					$('#result').empty();
+					$.post(URL, formData,
+						function (data, textStatus, jqXHR) {
+							$('#test-result').remove();
+							$('#result').before('<p id="test-result">실행결과</p>');
+							$('#result').append(data);
+						}
+					).fail(function (jqXHR, textStatus, errorThrown) {
+						$('#result').append("요청처리 실패");
+					});
+				});
+		});
+		function postPopUp(formName) {
+			fm = document.getElementById(formName);
+			window.open("", "viewer", "width=1000, height=700, menubar=no,status=yes,scrollbars=no");
+			fm.action = "forward_test";
+			fm.target = "viewer";
+			fm.method = "post";
+			fm.submit();
+		}
+	</script>
+</th:block>
+
+<div layout:fragment="content">
+	<div id="contents">
+		<div id="box2" class="d-flex flex-column flex-shrink-0">
+			<div id="side-title">
+				<p>시큐어코딩 테스트</p>
+			</div>
+			<hr>
+			<ul id="lists" class="list-unstyled ps-0">
+				<li>
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+						data-bs-target="#basic-collapse" aria-expanded="false">기초</button>
+					<div class="collapse" id="basic-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+							<li><button type="button" class="btn menu rounded" no="1">인코딩</button></li>
+							<li><button type="button" class="btn menu rounded" no="2">정규식</button></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+						data-bs-target="#input-collapse" aria-expanded="false">입력 값 검증</button>
+					<div class="collapse" id="input-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+							<li><button type="button" class="btn menu rounded" no="3">SQL삽입</button></li>
+							<li><button type="button" class="btn menu rounded" no="4">코드삽입</button></li>
+							<li><button type="button" class="btn menu rounded" no="5">XML삽입</button></li>
+							<li><button type="button" class="btn menu rounded" no="6">XSS</button></li>
+							<li><button type="button" class="btn menu rounded" no="15">CSRF</button></li>
+							<li><button type="button" class="btn menu rounded" no="11">HTTP응답분할</button></li>
+							<li><button type="button" class="btn menu rounded" no="14">정수오버플로우</button></li>
+							<li><button type="button" class="btn menu rounded" no="8">오픈리다이렉트</button></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+						data-bs-target="#security-collapse" aria-expanded="false">보안기능</button>
+					<div class="collapse" id="security-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+							<li><button type="button" class="btn menu rounded" no="10">인증</button></li>
+							<li><button type="button" class="btn menu rounded" no="12">접근제어</button></li>
+							<li><button type="button" class="btn menu rounded" no="7">암호화</button></li>
+							<li><button type="button" class="btn menu rounded" no="9">보안쿠키</button></li>
+							<li><button type="button" class="btn menu rounded" no="31">중요정보 노출</button></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+						data-bs-target="#timestatus-collapse" aria-expanded="false">시간 및 상태</button>
+					<div class="collapse" id="timestatus-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+							<li><button type="button" class="btn menu rounded" no="16">TOCTOU</button></li>
+							<li><button type="button" class="btn menu rounded" no="18">반복문 제어 부재</button></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+						data-bs-target="#error-collapse" aria-expanded="false">에러 처리</button>
+					<div class="collapse" id="error-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+							<li><button type="button" class="btn menu rounded" no="13">예외 처리</button></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+						data-bs-target="#code-collapse" aria-expanded="false">코드 오류</button>
+					<div class="collapse" id="code-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+							<li><button type="button" class="btn menu rounded" no="19">널포인트 역참조</button></li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+						data-bs-target="#capsule-collapse" aria-expanded="false">캡슐화</button>
+					<div class="collapse" id="capsule-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+							<li><button type="button" class="btn menu rounded" no="30">캡슐화 위배</button></li>
+							<li><button type="button" class="btn menu rounded" no="17">세션간 정보 노출</button></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div id="box3">
+			<div id="labs">
+				<div class="hint" id="div0">
+					<div class="showLabs">
+						<img src="../../img/test.jpg" id="testimg" />
+						<h3>시큐어코딩 테스트</h3>
+						<p>왼쪽 메뉴에서 학습하려는 보안약점을 선택하세요</p>
+					</div>
+				</div>
+
+				<div class="hint" id="div1">
+					<h4 id="select-test">인코딩 테스트</h4>
+					<p id="comment">
+					    문자인코딩(Character Encoding)은 문자들의 집합을 컴퓨터에 저장하거나 통신에 사용할 목적으로 부호화하는 방법을 말합니다.<br/>
+					    (예시) BASE64 인코딩 테스트 입력 : 10<br />
+						(예시) URL 인코딩 테스트 입력 : 10&b=20<br />
+						(예시) HTML 인코딩 테스트 입력 : &lt;script&gt;alert('test');&lt;/script&gt;</p>
+					<form id="form1" action="encode_test">
+						<div class="showLabs">
+							<table class="encode_type">
+								<tr>
+									<td>
+										<input type="radio" name="type" value="0" checked="checked"
+											class="form-check-input"> BASE64 인코딩
+									</td>
+									<td>
+										<input type="radio" name="type" value="1" class="form-check-input"> BASE64 디코딩
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="radio" name="type" value="2" class="form-check-input"> URL 인코딩
+									</td>
+									<td>
+										<input type="radio" name="type" value="3" class="form-check-input"> URL 디코딩
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="radio" name="type" value="4" class="form-check-input"> HTML 인코딩
+									</td>
+									<td>
+										<input type="radio" name="type" value="5" class="form-check-input"> HTML 디코딩
+									</td>
+								</tr>
+							</table>
+							<div class="inputGroup">
+								<input type="text" name="data" id="data1" placeholder="테스트할 구문을 입력해주세요"
+									class="form-control">
+								<input type="button" id="button1" th:value="실행" class="btn btn-primary">
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="hint" id="div2">
+					<h4 id="select-test">정규식 테스트</h4>
+					<p id="comment">
+					    정규표현식은 특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식의 언어입니다. <br/>
+					    주로 프로그래밍 언어나 텍스트 에디터등에서 문자열의 검색과 치환을 위한 용도로 사용됩니다. <br/>
+					    이러한 정규식을 이용하여 입력 값을 통제할 수 있습니다.<br />
+						(예시) XSS를 발생시킬 수 있는 &lt;script&gt; 가 입력값에 포함되지 않도록 입력값 검증<br/>
+						(예시) 패스워드 규칙(영문자, 숫자, 특수문자를 포함한 8~15글자)을 정규식으로 정해 입력값 검증<br/></p>
+					<form id="form2" action="reg_test">
+						<div class="showLabs inputGroup">
+							<input type="text" name="data" id="data2" placeholder="정규식 문자열을 입력해주세요 (예: ^.*example.*$)"
+								class="form-control">
+							<input type="button" id="button2" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+
+				<div class="hint" id="div3">
+					<h4 id="select-test">SQL삽입</h4>
+					<p id="comment">SQL질의문을 생성할 때 검증되지 않은 외부 입력값을 허용하여 악의적인 질의문이 실행행가능한 보안약점입니다.<br/>
+					외부 입력 값을 안전하게 필터링하지 않으면 공격자가 입력한 SQL 쿼리문이 수행되어 정보 침해 사고가 발생할 수 있습니다.</p>
+					<form action="sql_test" id="form4">
+						<p class="test-subtitle"><br/>(1) MySQL 인젝션(인증우회)</p>
+						<table class="sql_type1">
+							<tr>
+								<td>
+									<input type="text" name="id" id="data4-1" placeholder="아이디" class="form-control">
+								</td>
+								<td>
+									<input type="password" name="passwd" id="data4-2" placeholder="패스워드"
+										class="form-control">
+								</td>
+								<td>
+									<input type="button" id="button4" th:value="실행" class="btn btn-primary">
+								</td>
+							</tr>
+						</table>
+					</form>
+					<form action="sql_test_b" id="form41">
+						<p class="test-subtitle"><br/>(2) MySQL 인젝션</p>
+						<div class="inputGroup">
+							<input type="text" name="id2" id="data41" placeholder="아이디" class="form-control">
+							<input type="button" id="button41" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+					<!--<form action="sql_test_b2" id="form4">
+						<div class="showLabs">
+							(3) MS-SQL 인젝션<br />
+							ID: <input type="text" name="id" id="data4-1" size="60"> <input type="submit" id="button4"
+								value="실행">
+						</div>
+					</form>-->
+				</div>
+				<div class="hint" id="div4">
+					<h4 id="select-test">코드 삽입</h4>
+					<p id="comment">프로세스가 외부 입력값을 코드(명령어)로 해석 실행할수 있고 프로세스에 검증되지 않은 외부 입력값을 허용한 경우 악의적인 코드가 실행 가능한 보안약점입니다.
+					명령어 삽입 취약점은 외부에서 입력된 값을 충분히 검증하지 않은 채 서버에서 실행되는 명령어로 사용할 때 발생합니다.
+					서버로 전송되는 파라미터를 프록시를 사용해서 추가로 실행될 명령어(예: &calc)를 삽입하여 테스트합니다. <br/></p>
+					<form action="command_test" id="form5">
+						<div class="inputGroup">
+							<select name="data" id="data5" class="form-select form-select-sm">
+								<option value="">--- 선택하세요 ---</option>
+								<option value="type">File1.txt 보기</option>
+								<option value="dir">디렉토리 보기</option>
+							</select>
+							<input type="button" id="button5" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div5">
+					<h4 id="select-test">XML삽입</h4>
+					<p id="comment">XPath,XQuery 질의문을 생성할 때 검증되지 않은 외부 입력값을 허용하여 악의적인 질의문이 실행가능한 보안약점입니다.
+					<br/>XML문서를 조회하기 위해 외부입력값을 삽입하여 XPath를 생성하는 경우, 공격자가 ', =, [, @와 같은 입력값으로 XPath를 조작하여 원하는 정보를 탈취할 수 있습니다.<br/></p>
+					<form action="xpath_test" id="form6">
+						<div class="inputGroup">
+							<input type="text" name="name" id="data6" placeholder="이름을 입력해주세요" class="form-control">
+							<input type="button" id="button6" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div6">
+					<h4 id="select-test">XSS</h4>
+					<p id="comment">용자 브라우저에 검증되지 않은 외부 입력값을 허용하여 악의적인 스크립트가 실행 가능한 보안약점입니다.
+					<br/>서버 프로그램이 외부에서 입력된 값을 적절하게 필터링하지 않은 채 사용자에게 응답하도록 되어 있는 경우, 공격자가 입력 값에 스크립트 요소를 삽입하여
+						사용자들에게 악성코드가 배포되어 실행되는 침해 사고가 발생할 수 있습니다. </p>
+					<form action="xss_test" id="form3">
+						<p class="test-subtitle"><br/>(1) Reflected XSS</p>
+						<p>외부입력값을 검증하지 않고 그대로 응답페이지에 사용하는 경우 공격자가 삽입한 스크립트가 사용자에게 응답되어 사용자의 브라우저에서 실행되는 보안약점입니다. </p>						
+						<div class="inputGroup">
+							<input type="text" name="data" id="data3" class="form-control">
+							<input type="button" id="button3" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+					<form action="xss_test_b" id="form20">
+						<p class="test-subtitle"><br/>(2) Stored XSS</p>
+						<p>서버에 저장된 값을 사용자가 요청하는 경우 사용자에게 응답되는 값을 검증하지 않고 그대로 사용하는 경우 서버에 저장되어 있던 공격자의 스크립트가 
+						사용자에게 응답되어 사용자의 브라우저에서 실행되는 보안약점입니다.</p>
+						<div class="inputGroup">
+							<input type="text" name="data" id="data20" placeholder="1 또는 2를 입력해주세요"
+								class="form-control">
+							<input type="button" id="button20" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+					<form action="xss_test_c" id="form21">
+						<p class="test-subtitle"><br/>(3) DOM XSS</p>
+						<p>자바스크립트에서 documnet에 write를 수행하는 경우 쓰기에 사용되는 입력값이 검증되지 않고 사용되는 경우 사용자의 브라우저에서 공격자의 스크립트가 싫행되는 보안약점입니다.</p>
+						<div class="inputGroup">
+							<input type="text" name="data" id="data21" class="form-control">
+							<input type="submit" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div15">
+					<h4 id="select-test">CSRF</h4>
+					<p id="comment">사용자 브라우저에 검증되지 않은 외부 입력 값을 허용하여 사용자 본인의 의지와는 무관하게 공격자가 의도한 행위가 실행 가능한 보안약점입니다.
+					서버가 사용자의 요청이 실제 사용자가 의도한 요청인지 확인하지 않고 처리하는 경우, 공격자에 의해 위조된 요청을 수신하더라도 차단되지 않고 실행되는 보안약점입니다.
+					</p>
+					<p><br/>회원의 보안관리정보를 관리하기위해 각회원에 대한 커맨트를 작성하는 화면입니다.</p>
+					<form action="csrf_test" id="form15">
+						<table class="csrf_type">
+							<tr>
+								<td>
+									<input type="text" name="id" id="data15" th:value="${session.userId}" readonly
+										class="form-control">
+								</td>
+								<td>
+									<input type="text" name="comment" id="data15" placeholder="커맨트를 입력해주세요"
+										class="form-control">
+								</td>
+								<td>
+									<input type="button" id="button15" th:value="실행" class="btn btn-primary">
+								</td>
+							</tr>
+						</table>
+						<p id="point">고객님의 보안정책 커맨트를 조회하시려면 <input type="button" id="button25" th:value="여기">를 클릭해주세요.</p>
+					</form>
+				</div>
+				<div class="hint" id="div7">
+					<h4 id="select-test">암호화</h4>
+					<p id="comment">중요한 정보는 반드시 안전한 암호화 알고리즘을 사용해서 전송하거나 저장해야 합니다.
+					<br/>행안부 개발보안가이드에서는 "암호화되지 않은 중요정보","취약한 암호화 알고리즘사용","충분하지 않은 키길이 사용"과 같은 보안요구항목을 정의하여 
+					식별된 중요정보에 대해 안전한 암호화 알고리즘을 적용하여 암호화하여 전송하거나 저장하도록 정의하고 있습니다. </p>
+					<form action="encrypt_test" id="form7">
+						<table class="encrypt_type">
+							<tr>
+								<td>
+									<input type="radio" name="type" value="0" checked="checked"
+										class="form-check-input">
+									SHA-256 암호화
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="type" value="1" class="form-check-input"> AES 암호화
+								</td>
+								<td>
+									<input type="radio" name="type" value="2" class="form-check-input"> AES 복호화
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="type" value="3" class="form-check-input"> RSA 암호화
+								</td>
+								<td>
+									<input type="radio" name="type" value="4" class="form-check-input"> RSA 복호화
+								</td>
+							</tr>
+						</table>
+						<div class="inputGroup">
+							<input type="text" name="data" id="data7" placeholder="암/복호화 요청 데이터를 입력해주세요"
+								class="form-control">
+							<input type="button" id="button7" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div8">
+					<h4 id="select-test">오픈 리다이렉트</h4>
+					<p id="comment">외부 입력 값을 이용하여 페이지 이동을 수행하는 경우 페이지 정보는 반드시 서버가 관리하도록 구현해야 합니다.
+					<br/>행안부 개발보안가이드에서는 "신뢰되지 않는 URL 주소로 자동접속 연결" 보안약점기준으로 정의되어 있으며, 
+					     URL 링크 생성에 검증되지 않은 외부 입력값을 허용하여 악의적인 사이트로 자동 접속 가능한 보안약점입니다. </p>
+					<form name="form8" id="form8">
+						<div class="inputGroup">
+							<select name="data" id="data8" class="form-select form-select-sm">
+								<option value="">--- 선택하세요 ---</option>
+								<option value="http://www.naver.com">네이버</option>
+								<option value="http://www.nate.com">네이트</option>
+								<option value="http://www.daum.net">다음</option>
+							</select>
+							<input type="button" value="이동" th:onclick="postPopUp('form8')" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div9">
+					<h4 id="select-test">보안쿠키</h4>
+					<p id="comment">중요한 정보를 쿠키에 담아서 전송해야 하는 경우, 반드시 쿠키에 setSecure(true)를 적용하여 https 통신에서만 쿠키가 전달될 수 있도록
+						구현해야 합니다.
+						<br/>행안부 개발보안가이드에서는 "암호화되지 않은 중요정보","사용자 하드디스크에 저장되는 쿠키를 통한 정보 노출" 보안약점기준으로 정의되어 있으며,
+						중요자원에 적절한 접근 권한을 부여하지 않아 중요정보가 노출·수정 가능한 보안약점, 쿠키(세션 ID, 사용자 권한정보 등 중요정보)를 사용자 하드디스크에 저장되어 중요정보가 노출 가능한 보안약점으로 설명하고 있습니다.</p>
+					<form action="secure_cookie_test" id="form9">
+						<table class="securecookie_type">
+							<tr>
+								<td>
+									<input type="radio" name="type" value="0" class="form-check-input"> 쿠키값 설정 요청
+								</td>
+								<td>
+									<input type="radio" name="type" value="1" class="form-check-input"> 쿠키값 전송 요청
+								</td>
+							</tr>
+						</table>
+						<div class="inputGroup">
+							<input type="text" name="data" id="data9" placeholder="전송할 데이터를 입력해주세요"
+								class="form-control" />
+							<input type="button" id="button9" th:value="실행" class="btn btn-primary" />
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div10">
+					<h4 id="select-test">인증</h4>
+					<p id="comment">시스템 보안의 첫번째는 안전하고 강력한 인증입니다. <br/>
+					행안부 개발보안가이드에서는 "적절한 인증 없는 중요기능 허용","반복된 인증시도 제한 기능 부재","취약한 비밀번호 허용","부적절한 인증서 유효성 검증"과 같은 보안약점기준을 정의하고 있습니다.
+					<br/>(예시) SQL 인젝션이나 취약한 로직에 의해 인증이 우회되지 않도록 구현해야 합니다.
+					<br/>(예시) 인증시도 횟수를 제한하여 자동화된 인증시도를 제한하도록 해야 합니다.
+					<br/>(예시) 토큰기반의 인증의 경우 정확한 인증정보 확인 정책을 구현해야 합니다.</p>
+					<form action="authenticator_test" id="form10">
+						<table class="authentication_type">
+							<tr>
+								<td>
+									<input type="text" name="id" id="data10-1" placeholder="아이디를 입력해주세요"
+										class="form-control">
+								</td>
+								<td>
+									<input type="password" name="passwd" id="data10-2" placeholder="비밀번호를 입력해주세요"
+										class="form-control">
+								</td>
+								<td>
+									<input type="button" id="button10" th:value="실행" class="btn btn-primary">
+								</td>
+							</tr>
+						</table>
+					</form>				
+				</div>
+				<div class="hint" id="div11">
+					<h4 id="select-test">HTTP응답 분할</h4>
+					<p id="comment">외부 입력 값이 헤더에 포함되는 경우, HTTP응답을 분할할 수 있는 \r\n과 같은 특수 문자가 입력 값에 포함되지 않도록 필터링해서 사용해야
+						합니다.
+					</p>
+					<form action="http_split_test" id="form11">
+						<div class="inputGroup">
+							<input type="text" name="data" id="data11" size="60" placeholder="전송할 메시지를 입력해주세요"
+								class="form-control">
+							<input type="button" id="button11" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div12">
+					<h4 id="select-test">접근 제어</h4>
+					<p id="comment">인가는 시스템 보안 핵심 요소 중 하나로, 시스템 리소스에 대해 권한이 있는 사용자만 사용할 수 있도록 하는 정책입니다.</p>
+					<form action="access_control_test" id="form12">
+						<div class="inputGroup">
+							<select name="action" id="data12" class="form-select form-select-sm">
+								<option value="">--- 선택하세요 ---</option>
+								<option value="view">정보 조회</option>
+								<option value="modify">연락처 변경</option>
+								<option th:if="${session.userId == 'admin' }" value="edit">고객 정보 등록</option>
+								<option th:if="${session.userId == 'admin' }" value="delete">고객 정보 삭제</option>
+							</select>
+						</div>
+						<table class="access_control_type1" th:if="${session.userId == 'admin' }">
+							<tr>
+								<td>
+									<input type="text" name="id" id="data12" placeholder="고객의 아이디를 입력해주세요"
+										class="form-control" />
+								</td>
+								<td>
+									<input type="text" name="name" id="data12" placeholder="고객의 연락처를 입력해주세요"
+										class="form-control">
+								</td>
+								<td>
+									<input type="button" id="button12" th:value="실행" class="btn btn-primary" />
+								</td>
+							</tr>
+						</table>
+						<table class="access_control_type2" th:unless="${session.userId == 'admin' }">
+							<tr>
+								<td>
+									<input type="text" name="id" id="data12" placeholder="아이디를 입력해주세요"
+										th:value="${session.userId}" readonly class="form-control" />
+								</td>
+								<td>
+									<input type="text" name="name" id="data12" placeholder="연락처를 입력해주세요"
+										class="form-control" />
+								</td>
+								<td>
+									<input type="button" id="button12" value="실행" class="btn btn-primary" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="hint" id="div13">
+					<h4 id="select-test">예외 처리</h4>
+					<p id="comment">시스템이 정상적으로 동작할 수 없는 예외 사항이 발생했을 때 안전하게 예외 처리를 할 수 있도록 프로그램을 작성해야 합니다.</p>
+					<form action="exception_test" id="form13">
+						<table class="exception_type">
+							<tr>
+								<td>
+									<input type="radio" name="type" value="0" checked="checked"
+										class="form-check-input">
+									오류메시지를 통한 정보 노출 (0 ~ 100 사이의 숫자 입력)
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="type" value="1" class="form-check-input"> 오류 상황 대응 부재 (계정
+									아이디 입력(예: admin))
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="type" value="2" class="form-check-input"> 부적절한 예외처리 (조회하고자
+									하는 파일명 입력 (예:file1.txt))
+								</td>
+							</tr>
+						</table>
+						<div class="inputGroup">
+							<input type="text" name="data" id="data13" placeholder="테스트 데이터를 입력해주세요"
+								class="form-control">
+							<input type="button" id="button13" value="실행" hint="예외 처리 테스트 데이터 입력"
+								class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div14">
+					<h4 id="select-test">정수 오버플로우</h4>
+					<p id="comment">외부에서 입력하거나 연산 결과로 나온 정수 값을 사용할 때 정수 값의 범위를 확인하고 사용할 수 있도록 프로그램을 작성해야 합니다.</p>
+					<form action=" int_overflow_test" id="form14">
+						<div class="inputGroup">
+							<input type="text" name="data" id="data14"
+								placeholder="-2147483648 ~ 2147483647 사이의 숫자를 입력해야 합니다" class="form-control">
+							<input type="button" id="button14" value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div16">
+					<h4 id="select-test">TOCTOU</h4>
+					<p id="comment"> 스레드에서 공유되는 데이터는 적절한 동기화 처리가 구현되지 않으면 데이터에 대한 동시성 문제가 발생할 수 있습니다.</p>
+					<form action=" concurrency_test" id="form16">
+						<div class="inputGroup">
+							<input type="text" name="data" id="data16" placeholder="0 ~ 9 중 하나의 숫자를 입력해주세요"
+								class="form-control">
+							<input type="button" id="button16" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div17">
+					<h4 id="select-test">세션간 정보 노출</h4>
+					<p id="comment">웹 애플리케이션에서 사용자의 요청을 처리하는 Controller는 대부분 스레드로 동작합니다. Controller 클래스를 설계할 때 클래스의 멤버
+						변수나 클래스 변수는 스레드의 공유 정보가 됩니다.</p>
+					<form action=" session_data_test" id="form17">
+						<table class="session_data_type">
+							<tr>
+								<td>
+									<input type="text" name="name" id="name" placeholder="이름을 입력해주세요"
+										class="form-control">
+								</td>
+								<td>
+									<input type="text" name="phone" id="phone" placeholder="전화번호를 입력해주세요"
+										class="form-control">
+								</td>
+								<td>
+									<input type="button" id="button17" th:value="실행" class="btn btn-primary">
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="hint" id="div18">
+					<h4 id="select-test">반복문 제어 부재</h4>
+					<p id="comment">반복문이나 재귀함수를 구현할 때 안전하게 제어될 수 있도록 프로그램을 작성해야 합니다.
+						제어가 제대로 구현되지 않는 경우 시스템 리소스 고갈 같은 오류 상황을 만들 수 있습니다.</p>
+					<form action=" loop_test" id="form18">
+						<div class="inputGroup">
+							<input type="text" name="data" id="data18" placeholder="팩토리얼 연산값을 구할 수를 입력해주세요"
+								class="form-control">
+							<input type="button" id="button18" th:value="실행" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div19">
+					<h4 id="select-test">널포인트 역참조</h4>
+					<p id="comment">외부에서 전달된 객체는 사용 전에 반드시 값이 null인지 null이 아닌지 확인하고 사용할 수 있도록 프로그램을 작성해야 합니다.</p>
+					<form action=" null_test" id="form19">
+						<div class="inputGroup">
+							<select name="data" id="data19" class="form-select form-select-sm">
+								<option value="">--- 선택하세요 ---</option>
+								<option value="0">백업</option>
+								<option value="1">복구</option>
+								<option value="2">초기화</option>
+							</select>
+							<input type="button" id="button19" th:value="실행" class="btn btn-primary">
+							<input type="hidden" name="userid" th:value="${session.userId}">
+						</div>
+					</form>
+				</div>
+				<div class="hint" id="div30">
+					<h4 id="select-test">캡슐화 위배</h4>
+					<p id="comment">private으로 선언된 데이터는 반드시 해당 클래스의 멤버 메소드를 통해 통제되도록 프로그램이 작성되어야 합니다.
+						하지만 배열이나 컬렉션 자료형은 잘못된 코드 때문에 외부 클래스에서 직접 객체 정보를 액세스 할 수 있는 문제가 발생하기도 합니다.</p>
+					<form action="encap_test" id="form30">
+						<table class="encap_type">
+							<tr>
+								<td>
+									<select name="type" id="data30" class="form-select form-select-sm">
+										<option value="">--- 선택하세요 ---</option>
+										<option value="0">관리자 목록 조회</option>
+										<option value="1">관리자 정보 수정</option>
+										<option value="2">관리자 정보 초기화</option>
+									</select>
+								</td>
+								<td>
+									<input type="text" name="data" id="data30" placeholder="아이디를 입력해주세요"
+										class="form-control">
+								</td>
+								<td>
+									<input type="button" id="button30" th:value="실행" class="btn btn-primary">
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+
+				<div class="hint" id="div31">
+					<h4 id="select-test">중요정보 노출</h4>
+					<p id="comment">중요정보는 반드시 암호화되어 전송되거나 암호화된 통신 채널을 사용하여 전송해야 합니다. 만약 http 통신을 사용하는 경우 중요정보는 서버에서
+						마스킹 처리하여 클라이언트로 전송해야 하고, 클라이언트가 해당 정보를 확인하기 위해서는 반드시 https를 통해 요청하도록 구현해야 합니다.</p>
+					<p id="subcomment">중요 정보는 안전하게 마스킹되어서 표시됩니다.</p>
+					<div class="inputGroup2">
+						사용자 등급: <input type="password" name="grade" th:value="${session.userId }"
+							class="form-control" />
+						<input type="button" id="button31" value="숨겨진 값 표시" class="btn btn-secondary">
+					</div>
+					<p id="notice">
+						*소스보기를 통해 사용자 등급을 확인하세요.
+					</p>
+				</div>
+			</div>
+			<div id="result_box">
+				<div class="result" id="result"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

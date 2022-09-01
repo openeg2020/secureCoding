@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>게시판 목록</title>
+</head>
+
+<th:block layout:fragment="custom_css">
+	<link th:href="@{../../css/board.css}" rel="stylesheet" />
+</th:block>
+
+<th:block layout:fragment="custom_js">
+	<script th:inline="javascript">
+		function moveAction(where) {
+			switch (where) {
+				case 1:
+					location.href = "write";
+
+					break;
+
+				case 2:
+					location.href = "list";
+					break;
+			}
+		}
+	</script>
+</th:block>
+
+<body>
+	<div layout:fragment="content">
+		<div id="contents">
+			<div class="searchBar">
+				<form action="list" method="get">
+					<select id="type" name="type" class="form-select form-select-sm">
+						<option th:value="subject" th:text="제목" th:selected="${#httpServletRequest.getParameter('type') == 'subject'}"></option>
+						<option th:value="content" th:text="내용" th:selected="${#httpServletRequest.getParameter('type') == 'content'}"></option>
+						<option th:value="writer" th:text="작성자" th:selected="${#httpServletRequest.getParameter('type') == 'writer'}"></option>
+					</select>
+					<input type="text" id="keyword" name="keyword" class="form-control" />
+					<input type="submit" value="검색" class="btn btn-primary" />
+				</form>
+			</div>
+
+			<table border="0" class="table table-hover">
+				<thead class="thead-style">
+					<tr>
+						<th>#</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>댓글</th>
+						<th>조회</th>
+						<th>추천</th>
+						<th>작성일</th>
+					</tr>
+				</thead>
+				<tbody class="tbody-style">
+					<tr th:each="board : ${boardList}">
+						<td class="idx" th:text="${board.rnum}"></td>
+						<td align="left" class="subject"><img th:if="${board.comment>= 10}" src="../../img/hit.jpg" />
+							<a th:href="@{view(idx=${board.idx})}">
+								<p th:text="${board.subject}">
+							</a>
+						</td>
+						<td class="writer" th:if="${board.writerId==session.userId}" th:text="${board.writer}" style="font-weight: 600">
+						</td>
+						<td class="writer" th:unless="${board.writerId==session.userId}" th:text="${board.writer}"></td>
+						<td class="comment" th:text="${board.comment}"></td>
+						<td class="hitcount" th:text="${board.hitcount}"></td>
+						<td class="recommendcount" th:text="${board.recommendcount}"></td>
+						<td class="writeDate" th:text="${board.writeDate}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<center>
+				<div id="pagination" th:utext="${pageHtml}"></div>
+			</center>
+			<div id="btngroup">
+				<input type="button" value="목록" class="btn btn-primary" onclick="moveAction(2)" />
+				<input type="button" value="쓰기" class="btn btn-primary" onclick="moveAction(1)" />
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

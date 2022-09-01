@@ -1,0 +1,223 @@
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, input, select, td, th, textarea, p, b, div, span { font-family: 'NEXON Lv1 Gothic OTF', "맑은고딕", "sans-serif"; font-size: 10pt; line-height:1rem; color:#555555 }
+input, select, textarea {border:1 solid '#e1e1e1';background:'#f7f7f7' }
+
+div.hint{
+   	   color: #483d8b;
+	   font-family:  "맑은고딕" ,"sans-serif";
+	   font-size: 13pt;
+}
+
+span.msg {
+	width: 500px;	
+}
+
+span.error {
+	font-size: 8pt;
+	color: red;
+	padding-left: 1%;
+}
+
+td { font-family: "굴림", "sans-serif"; font-size: 9pt; line-height:15pt; color:#555555 }
+
+.search { font-family: "굴림", "sans-serif"; font-size: 9pt; line-height:15pt; color:#202020 }
+.txt100 { border:1 solid #e1e1e1 ;background:#f7f7f7 ;width:100 ;height:18;}
+.txt160 { border:1 solid #e1e1e1 ;background:#f7f7f7 ;width:160 ;height:18;}
+
+A:link    {font-size:9pt; color:#777777;text-decoration:none;}
+A:visited {font-size:9pt; color:#777777;text-decoration:none;}
+A:alink   {font-size:9pt; color:#777777;text-decoration:none;}
+A:hover   {font-size:9pt; color:#cc3300;text-decoration:none;}
+
+
+A.login:link    {font-size:9pt; color:#ffffff;text-decoration:none;}
+A.login:visited {font-size:9pt; color:#ffffff;text-decoration:none;}
+A.login:alink   {font-size:9pt; color:#ffffff;text-decoration:none;}
+A.login:hover   {font-size:9pt; color:#ffffff;text-decoration:none;}
+
+img{ border: none; }
+
+/* header */
+header {
+	position: relative;
+	display: inline-block;
+	font-family: "맑은고딕" , "sans-serif";
+}
+
+#headerimg {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#ciimg {
+	position: absolute;
+	width: 6%;
+	top: 20%;
+	left: 24%;
+}
+
+/* navigation bar */
+.navbar {
+	border-top: 2px solid #F7F7F7;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.navbar-nav li:not(:last-child) {
+	border-right: 1px solid #e1e1e1;
+	margin-right: 10px;
+	padding-right: 10px;
+}
+
+.navbar-nav li:last-child {
+	font-size: 9pt;
+}
+
+.navbar-nav li:last-child a {
+	color: #777777;
+}
+
+.navbar-nav li:last-child a:hover {
+	cursor: pointer;
+	color: #0d6efd;
+}
+
+#memberbox > span.log_info {
+	font-size: 0.8rem;
+	margin-right: 6px;
+}
+
+#memberbox > a > button.btn {
+	font-size: 0.725rem;
+	width: 70px;
+	height: 30px;
+	line-height: 1;
+	padding: 3px 6px;
+}
+
+#memberbox > a > button.btn-outline-primary {
+	border: 0;
+	color: #6c757d;
+}
+
+#memberbox > a > button.btn-outline-primary:hover {
+	background-color: #109DF7;
+	color: #ffffff;
+}
+
+.log_info {
+	font-weight: 800;
+}
+
+/* content */
+#container {
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 1000px;
+	background: #fff;
+}
+
+#content {
+	margin: 0 auto;
+	width: 800px;
+	padding: 20px 0;
+}
+
+#contents {
+	margin: 0 auto;
+	align-items: center;
+}
+
+/* login */
+#loginbox {
+	width: 800px;
+	padding: 25px 50px;
+	margin: 0 auto;
+	border: 1px solid #e1e1e1;
+	border-radius: 10px;
+}
+
+#loginbox input#userId.form-control, #loginbox input#userPw.form-control {
+	font-size: 0.825rem;
+	width: 200px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#loginbox input#loginbtn.btn {
+	font-size: 0.825rem;
+}
+
+#loginbox p, #loginbox span {
+	margin: 0;
+	margin-top: 10px;
+	font-size: 0.8rem;
+}
+
+#loginbox span {
+	cursor: pointer;
+	font-weight: 800;
+}
+
+#loginbox span:hover {
+	color: #109DF7;
+}
+
+/* board-main */
+#content-string {
+	width: 380px;
+	margin: 0;
+	padding: 5px 10px;
+	display: inline-block;
+}
+
+#content-img {
+	width: 280px;
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid #e1e1e1;
+}
+#content h2 { margin: 0; }
+
+/* footer */
+#footer {
+	clear: both;
+	background: #eee;
+	text-align: center;
+	padding: 30px;
+	height: 120px;
+}
+
+#footer p {
+	line-height: 50px;
+	margin: 0;
+}
+
+#footer p > a {
+	font-weight: 800;
+}
+
+/* domxss style */
+.domxsstestbox {
+	height: 400px;
+	margin-top: 1.5rem;
+}
+
+.domxsstestbox p {
+	margin: 0;
+}
+
+.domxsstestbox strong {
+	cursor: pointer;
+}
+
+.domxsstestbox strong:hover {
+	color: #109DF7;
+}

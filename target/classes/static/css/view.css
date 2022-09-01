@@ -1,0 +1,216 @@
+body {
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+}
+
+/* board view */
+#contents {
+	margin: 0 auto;
+}
+
+h3 {
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+	text-align: center;
+	font-weight: 700;
+	margin-bottom: 1.2rem;
+}
+
+/* board table style */
+.boardView {
+	width: 100%;
+}
+
+th, td {
+	font-size: 0.875rem;
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+}
+
+.boardView > tbody > tr > th:first-child {
+	width: 8%;
+}
+
+td.writer {
+	width: 52%;
+}
+
+.icon {
+	width: 3%;
+	text-align: right;
+}
+
+i {
+	font-size: 1rem;
+}
+
+td.hit, td.recommend {
+	width: 5%;
+	text-align: center;
+}
+
+th.wdate {
+	width: 8%;
+	text-align: center;
+}
+
+td.writeDate {
+	width: 19%;
+	text-align: center;
+}
+
+.attachment {
+	height: 40px;
+	border-bottom: 1px solid #d4d4d5;
+}
+
+td.attachment a {
+	font-size: 0.875rem;
+}
+
+td.attachment a:hover {
+	color: #109DF7;
+}
+
+.boardContent {
+	height : 300px;
+	padding: 1rem 0.5rem;
+	text-align: left;
+	vertical-align: top;
+}
+
+/* comment table style */
+.commentView {
+	margin-top: 1rem;
+	width: 100%;
+	background-color: #f5f5f5;
+	border-radius: 8px;
+}
+
+.commentView th:first-child, .commentView td:first-child {
+	padding-left: 0.8rem;
+}
+
+th.ctitle {
+	font-size: 1rem;
+	height: 50px;
+}
+
+tr.comments {
+	height: 40px;
+}
+
+td.cwriter {
+	width: 12%;
+}
+
+td.commentContent {
+	width: 72%;
+}
+
+td.cwdate {
+	width: 10%;
+	font-size: 0.75rem;
+	text-align: center;
+}
+
+td.crbtn {
+	width: 5%;
+	font-size: 0.8rem;
+	color: #F94284;
+	cursor: pointer;
+	text-align: center;
+}
+
+/* comment write style */
+tr.cwrite {
+	height: 120px;
+}
+
+td.cwriteTitle {
+	width: 12%;
+	font-weight: 600;
+}
+
+td.content2 > form {
+	width: 88%;
+	display: inline;
+}
+
+textarea#cwcontent {
+	width: 90%;
+	height: 70px;
+	resize: none;
+	display: inline;
+}
+
+td.content2 > form > input.btn {
+	vertical-align: top;
+	height: 70px;
+	font-size: 0.875rem;
+}
+
+td.content2 > form > input.btn-primary {
+	background-color: #109DF7;
+	border: 0;
+}
+
+td.content2 > form > input.btn-primary:hover {
+	background-color: #0d6efd;
+}
+
+/* button group */
+.btnGroup {
+	margin-top: 1.2rem;
+}
+
+.btnGroup input.btn {
+	font-size: 0.875rem;
+}
+
+.btnGroup input.btn:not(:last-child) {
+	margin-right: 0.5rem;
+}
+
+.btnGroup input.btn-danger {
+	background-color: #F94284;
+	border: 0;
+}
+
+.btnGroup input.btn-danger:hover {
+	background-color: #dc3545;
+}
+
+.btnGroup input.btn-warning {
+	background-color: #FCEE5F;
+	border: 0;
+}
+
+.btnGroup input.btn-warning:hover {
+	background-color: #ffc107;
+}
+
+.btnGroup input.btn-secondary {
+	background-color: #b9b9b9;
+	border: 0;
+}
+
+.btnGroup input.btn-secondary:hover {
+	background-color: #6c757d;
+}
+
+.btnGroup input.btn-success {
+	background-color: #0BCA13;
+	border: 0;
+}
+
+.btnGroup input.btn-success:hover {
+	background-color: #198754;
+}
+
+A:link    { color: black; text-decoration:none; }
+A:visited { color: black; text-decoration:none; }
+A:active  { color: black; text-decoration:none; }
+A:hover   { color: #666666; text-decoration:none; }
+
+A.page:link    { font-size: 11pt; color: black; text-decoration:none; }
+A.page:visited { font-size: 11pt; color: black; text-decoration:none; }
+A.page:active  { font-size: 11pt; color: black; text-decoration:none; }
+A.page:hover   { font-size: 11pt; color: #666666; text-decoration:none; }

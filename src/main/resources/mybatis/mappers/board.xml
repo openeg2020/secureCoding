@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.openeg.lab.board.dao.BoardDao">
+
+	<select id="getBoardList" parameterType="java.util.HashMap" resultType="BoardModel">
+		select 
+			b.idx, b.writer, b.subject,
+			b.content, b.hitcount, b.recommendcount,
+			date_format(b.writedate, '%Y-%m-%d') writeDate, 
+			count(c.idx) as 'comment',
+			b.writerId, b.fileName, b.savedFileName, b.rnum
+		from (select 
+				a.idx, a.writer, a.subject,
+				a.content, a.hitcount, a.recommendcount,
+				a.writedate, a.writerId, a.fileName, a.savedFileName, @ROWNUM := @ROWNUM + 1 AS  rnum
+			from (select 
+					idx, writer, subject,
+					content, hitcount, recommendcount,
+					writedate, writerId, fileName, savedFileName
+				from board
+        		order by idx desc) a, (select @ROWNUM := 0 ) r
+        ) b left outer join board_comment c on b.idx = c.linkedarticlenum
+	      where rnum between #{startArticleNum} and #{endArticleNum}
+	    group by
+	    	b.idx, b.writer, b.subject, 
+	    	b.content, b.hitcount, b.recommendcount, 
+	    	b.writedate, b.rnum, b.writerId, b.fileName, b.savedFileName
+	    order by b.idx desc		
+	</select>
+	<select id="getTotalNum" resultType="int">
+		select 
+			count(idx)
+		from board
+	</select>
+	<select id="getSearchTotalNum" resultType="int">
+		select 
+			count(idx)
+		from board
+		where '${type}' like '%${keyword}%'
+	</select>
+	<select id="searchArticle" parameterType="java.util.HashMap" resultType="BoardModel">
+		select 
+			b.idx, b.writer, b.subject,
+			b.content, b.hitcount, b.recommendcount,
+			date_format(b.writedate, '%Y-%m-%d %T') writeDate, 
+			count(c.idx) as "comment", 
+			b.writerId, b.fileName, b.savedFileName, b.rnum
+		from (select 
+				a.idx, a.writer, a.subject,
+				a.content, a.hitcount, a.recommendcount,
+				a.writedate, a.writerId, a.fileName, a.savedFileName, @ROWNUM:=@ROWNUM+1 AS rnum
+		 	   from (select 
+					      idx, writer, subject,
+					      content, hitcount, recommendcount,
+					      writedate, writerId, fileName, savedFileName
+				          from board
+				          where ${type} like '%${keyword}%'
+        		          order by idx desc) a, (select @ROWNUM:=0) r
+                      ) b left outer join board_comment c on b.idx = c.linkedarticlenum
+	           where rnum between #{startArticleNum} and #{endArticleNum}
+	     group by 
+	    	b.idx, b.writer, b.subject, 
+	    	b.content, b.hitcount, b.recommendcount, 
+	    	b.writedate, b.rnum, b.writerId, b.fileName, b.savedFileName
+	    order by b.idx desc		
+	</select>
+	<select id="getOneArticle" parameterType="int" resultType="BoardModel">
+		select
+			idx,
+			writer,
+			subject,
+			content,
+			hitcount,
+			recommendcount,
+			writedate,
+			writerId,
+			fileName,
+			savedFileName
+		from board
+    	where idx = #{idx}
+	</select>
+	<select id="getCommentList" parameterType="int" resultType="BoardCommentModel">
+		select 
+			idx, writer, content, 
+			writeDate, linkedArticleNum, writerId
+		from board_comment
+  		where linkedArticleNum = #{idx}
+  		order by idx desc
+	</select>
+	<select id="getOneComment" parameterType="int" resultType="BoardCommentModel">
+		select 
+			idx, writer,
+			content, 
+			writeDate, linkedArticleNum, writerId
+		from board_comment
+  		where idx = #{idx}		
+	</select>
+	<insert id="writeArticle" parameterType="BoardModel">
+		insert into board(writer, subject, content, hitcount, recommendcount, writeDate, writerId, fileName, savedFileName)
+			values(#{writer}, #{subject}, #{content}, 0, 0,now(), #{writerId}, #{fileName}, #{savedFileName})
+	</insert>
+	<insert id="writeComment" parameterType="BoardCommentModel">
+		insert into board_comment(writer, content, writeDate, linkedArticleNum, writerId)
+			values(#{writer}, #{content}, now(), #{linkedArticleNum}, #{writerId})
+	</insert>
+	
+	<update id="updateHitcount" parameterType="java.util.HashMap">
+		update 
+			board 
+		set hitcount = #{hitcount}
+		where idx = #{idx}
+	</update>
+	<update id="updateRecommendcount" parameterType="java.util.HashMap">
+		update
+			board
+		set recommendcount = #{recommendcount}
+		where idx = #{idx}
+	</update>
+	<delete id="deleteComment" parameterType="int">
+		delete
+		from board_comment
+		where idx = #{idx}
+	</delete>
+	<delete id="deleteArticle" parameterType="int">
+		delete
+		from board
+		where idx = #{idx}	
+	</delete>
+	<update id="modifyArticle" parameterType="BoardModel">
+		update board
+		set subject = #{subject},
+			content = #{content},
+			fileName = #{fileName},
+			savedFileName = #{savedFileName}
+		where idx = #{idx}
+	</update>
+</mapper>
+
+
+
+
+
+
+

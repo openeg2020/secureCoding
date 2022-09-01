@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.openeg.lab.login.dao.LoginDao">
+	
+	<select id="loginCheck1" parameterType="String" resultType="MemberModel">
+		select 
+			userId,
+			userPw,
+			userName,
+			joinDate
+		from board_member
+		where userId = #{userId}
+
+	</select>	
+	<select id="loginCheck2" parameterType="LoginSessionModel" resultType="MemberModel">
+		select 
+			userId,
+			userPw,
+			userName,
+			joinDate
+		from board_member
+		where userId = '${userId}' and userPw = '${userPw}'
+
+	</select>	
+	
+	<insert id="addLoginHistory" parameterType="LoginHistory">
+		insert into login_history(userId,retry,lastFailedLogin,lastSuccessedLogin,clientIP)
+		values(#{userId},#{retry},#{lastFailedLogin},#{lastSuccessedLogin},#{clientIP})
+	</insert>	
+	
+	<update id="updateLoginHistory" parameterType="LoginHistory">
+		update  login_history  
+		      set  retry=#{retry},
+		            lastFailedLogin=#{lastFailedLogin},
+		            lastSuccessedLogin=#{lastSuccessedLogin},
+		   		    clientIP=#clientIP#
+		 where idx=#{idx} and userId=#{userId}
+	</update>	
+	
+	<select id="findLoginHistory" parameterType="String" resultType="LoginHistory">
+		select 
+		        idx,
+		        userId,
+	            retry,
+	            lastFailedLogin,
+	            lastSuccessedLogin,
+	            clientIP,
+		from login_history
+		where userId = #{userId}
+	</select>	
+</mapper>
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>회원정보 수정</title>
+</head>
+
+<th:block layout:fragment="custom_css">
+	<link th:href="@{../../css/member.css}" rel="stylesheet" />
+</th:block>
+
+<th:block layout:fragment="custom_js">
+	<script th:inline="javascript">
+		function errCodeCheck() {
+			/* <![CDATA[ */
+			var errCode = /*[[ ${errCode }]]*/{};
+			/* ]]> */
+			if (errCode != null || errCode != "") {
+				switch (errCode) {
+					case 1:
+						alert("기존 패스워드가 회원정보와 일치하지 않습니다");
+						break;
+					case 2:
+						alert("회원정보 수정에 오류가 발생했습니다");
+						break;
+					case 3:
+						alert("새 패스워드는 기존 패스워드와 달라야 합니다");
+						break;
+					case 4:
+						alert("회원정보 수정 성공!");
+						break;
+				}
+			}
+		}
+
+		function passwordCheck() {
+			if ($("#userPw").val() != $("#userPwCheck").val()) {
+				alert("패스워드 입력이 일치하지 않습니다");
+				$("#userPwCheck").focus();
+				return false;
+			}
+			return true;
+		}
+		$(function () {
+			errCodeCheck();
+		})
+	</script>
+</th:block>
+
+<div layout:fragment="content">
+	<div id="contents">
+		<spring:hasBindErrors name="MemberModel" />
+		<form:errors path="MemberModel" />
+		<h3>회원정보 수정</h3>
+		<form action="modify" method="post" onsubmit="return passwordCheck()">
+			<fieldset>
+				<table class="memberModify">
+					<tr>
+						<td class="td01"><label for="userId">아이디</label></td>
+						<td><input type="text" id="userId" name="userId" class="form-control"
+								th:value="${session.userId}" readonly="readonly" /></td>
+						<td><span class="error">
+								<form:errors path="MemberModel.userId" /></span></td>
+					</tr>
+					<tr>
+						<td class="td01"><label for="userName">이름</label></td>
+						<td><input type="text" id="userName" name="userName" th:value="${session.userName}"
+								class="form-control" /></td>
+						<td><span class="error">
+								<form:errors path="MemberModel.userName" /></span></td>
+					</tr>
+					<tr>
+						<td class="td01"><label for="oldUserPw">비밀번호</label></td>
+						<td><input type="password" id="oldUserPw" name="oldUserPw" class="form-control" /></td>
+						<td><span class="error">
+								<form:errors path="MemberModel.userPw" /></span></td>
+					</tr>
+					<tr>
+						<td class="td01"><label for="userPw">새 비밀번호</label></td>
+						<td><input type="password" id="userPw" name="userPw" class="form-control" /></td>
+						<td><span class="error">
+								<form:errors path="MemberModel.userPw" /></span></td>
+					</tr>
+					<tr>
+						<td class="td01"><label for="userPwCheck">새 비밀번호 확인</label></td>
+						<td><input type="password" id="userPwCheck" name="userPwCheck" class="form-control" /></td>
+						<td></td>
+					</tr>
+				</table>
+				<div class="mbtnGroup">
+					<input type="reset" value="재작성" class="btn btn-secondary" />
+					<input type="submit" value="확인" class="btn btn-primary" />
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+</html>

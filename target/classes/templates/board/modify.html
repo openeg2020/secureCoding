@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>게시글 수정</title>
+</head>
+
+<th:block layout:fragment="custom_css">
+	<link th:href="@{../../css/write.css}" rel="stylesheet" />
+</th:block>
+
+<th:block layout:fragment="custom_js">
+	<script th:inline="javascript">
+		function writeFormCheck() {
+			if ($("#subject").val() == null || $("#subject").val() == "") {
+				alert("제목을 입력해 주세요!");
+				$("#subject").focus();
+				return false;
+			}
+
+			if ($("#boardContent").val() == null || $("#boardContent").val() == "") {
+				alert("내용을 입력해 주세요!");
+				$("#boardContent").focus();
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+</th:block>
+
+<div layout:fragment="content">
+	<div id="contents">
+		<h3>수정하기</h3>
+		<form action="modify" method="post" onsubmit="return writeFormCheck()" enctype="multipart/form-data">
+			<table class="boardWrite">
+				<tr>
+					<th>제목</th>
+					<td>
+						<input type="text" id="subject" name="subject" class="form-control"
+							th:value="${board.subject}" />
+						<input type="hidden" id="writer" name="writer" th:value="${session.userName}" />
+						<input type="hidden" id="writerId" name="writerId" th:value="${session.userId}" />
+						<input type="hidden" id="idx" name="idx" th:value="${board.idx}" />
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea id="boardContent" name="content" class="form-control"
+							th:utext="${board.content}"></textarea></td>
+				</tr>
+				<tr>
+					<th><label for="file">파일</label></th>
+					<td>
+						<input type="file" id="newFile" name="newFile" class="form-control" />
+						<input type="hidden" id="orgFile" name="orgFile" th:value="${board.fileName}" />
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td th:text="'기존 업로드 파일: ' + ${board.fileName}" class="origFile"></td>
+				</tr>
+			</table>
+			<div class="wbtnGroup">
+				<input type="reset" value="재작성" class="btn btn-secondary" />
+				<input type="submit" value="확인" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+</html>

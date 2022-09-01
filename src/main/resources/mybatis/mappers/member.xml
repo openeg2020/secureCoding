@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.openeg.lab.member.dao.MemberDao">
+	
+	<select id="selectOneMember" parameterType="int" resultType="MemberModel">
+		select userId, userPw, userName, pinNo,joinDate
+		from board_member
+		where userId = #{userId}
+	</select>
+	
+	<select id="selectAllMember" resultType="MemberModel">
+		select userId, userPw, userName, pinNo,joinDate
+		from board_member
+	</select>
+	
+	<select id="findByUserId" parameterType="String" resultType="MemberModel">
+		select 
+			userId,
+			userPw,
+			userName,
+			pinNo,
+			joinDate
+		from board_member
+		where userId = #{userId}
+	</select>
+	
+	<delete id="deleteMember" parameterType="MemberModel">
+		delete from board_member where userId=#{userId}
+	</delete>	
+	
+	<insert id="addMember" parameterType="MemberModel">
+		insert into board_member(userId, userPw, userName, pinNo, joinDate)
+		values(#{userId}, #{userPw}, #{userName}, #{pinNo}, CURDATE())
+	</insert>	
+	<update id="updateMember" parameterType="MemberModel">
+		update  board_member  set
+		   userPw=#{userPw}, 
+		   userName=#{userName},
+		   pinNo=#{pinNo}
+		where 
+		   userId=#{userId}
+	</update>	
+	
+	
+	<insert id="addMemberSecurity" parameterType="MemberSecurity"> 
+		insert into openeg_security(userId, salt,secKey, comment)
+		                 values(#{userId}, #{salt},#{secKey},#{comment})
+	</insert>	
+	
+	<update id="updateMemberSecurity" parameterType="MemberSecurity">
+		update  openeg_security
+		      set  salt=#{salt},
+		           secKey=#{secKey},
+		           comment=#{comment}
+		      where userId=#{userId}
+	</update>	
+	
+	<select id="findMemberSecurity" parameterType="String" resultType="MemberSecurity">
+		select userId,
+	              salt,
+	              secKey,
+	              comment
+		from  openeg_security
+		where userId = #{userId}
+	</select>	
+</mapper>
+
+
+
+
+
+
+

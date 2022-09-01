@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/head :: head">
+	<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">시큐어코딩랩</title>
+</head>
+
+<body>
+	<header th:replace="fragments/header :: header">
+	</header>
+	<div id="container">
+		<div layout:fragment="content" id="content"></div>
+	</div>
+	<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+#content {
+	width: 1000px;
+}
+
+#contents {
+	margin: 0 auto;
+}
+
+/* sidebar */
+#box2 {
+	float: left;
+	width: 20%;
+	padding: 10px;
+	display: inline;
+	border: 1px solid #e1e1e1;
+	margin-bottom: 3.5rem;
+}
+
+#side-title {
+	height: 20px;
+	margin-top: 0.4rem;
+	padding-bottom: 0.4rem;
+}
+
+#side-title p {
+	margin-bottom: 0;
+	text-align: center;
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+	font-weight: 700;
+	font-size: 1.1rem;
+	line-height: 1.5;
+	vertical-align: middle;
+	color: #0B4E67;
+}
+
+ul#lists {
+	list-style: none;
+	padding: 0;
+	padding-left: 0.5rem;
+}
+
+ul#lists li:not(:first-child) {
+	padding-top: 0.3rem;
+}
+
+ul#lists .btn {
+	font-size: inherit;
+}
+
+.collapse, .collapsing {
+	padding-left: 0.5rem;
+}
+
+button.menu {
+	margin-left: 0.9rem;
+}
+
+button.menu:hover {
+	background-color: #109df7;
+	color: #ffffff;
+}
+
+/* sidebar effect */
+.btn-toggle[aria-expanded="true"]::before {
+	-ms-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    vertical-align: text-top;
+    margin-right: 0.5rem;
+}
+
+.btn-toggle::before {
+    width: 0.8rem;
+    height: 0.8rem;
+    line-height: 0;
+    content: '';
+    background-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='chevron-right' class='svg-inline--fa fa-chevron-right fa-w-10' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath fill='rgb(16,157,247)' d='M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: 0.8rem 0.8rem;
+    background-repeat: no-repeat;
+    display: inline-block;
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+    vertical-align: text-top;
+    margin-right: 0.5rem;
+}
+
+/* test main */
+#labs {
+	min-height: 300px;
+	height: 100%;
+	padding-top: 20px;
+}
+
+#div0 div.showLabs {
+	height: 200px;
+	padding-top: 50px;
+	overflow: visible;
+	text-align: center;
+}
+
+img#testimg {
+	width: 480px;
+	display: inline-block;
+}
+
+#div0 div.showLabs > h3 {
+	margin-top: 1rem;
+	font-weight: 700;
+}
+
+#div0 div.showLabs > p {
+	margin: 0;
+	margin-top: 1.2rem;
+	font-weight: 500;
+	font-size: 1rem;
+}
+
+/* test box */
+#box3 {
+	float: right;
+	width: 80%;
+	min-height: 600px;
+	height: 100%;
+	padding: 10px;
+	display: inline;
+	border: 1px solid white;
+	margin-bottom: 10px;
+
+}
+
+#box3 > #labs {
+	padding-left: 1rem;
+	padding-right: 1rem; 
+}
+
+#select-test {
+	font-weight: 700;
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+	text-align: center;
+	margin: 0;
+	margin-bottom: 2rem;
+	color: #0B4E67;
+}
+
+#comment {
+	color: #666;
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1.8;
+}
+
+td {
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+	font-size: 0.85rem;
+}
+
+.test-subtitle {
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+#result_box {
+	padding-top: 1.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+#test-result {
+	font-weight: 700;
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+	font-size: 1.1rem;
+	margin: 0;
+	padding-bottom: 1rem;
+}
+
+#result {
+	font-weight: 500;
+	font-size: 0.875rem;
+	color: #F94284;
+}
+
+/* input & buttons */
+.inputGroup, .inputGroup2 {
+	margin-bottom: 1rem;
+}
+
+.inputGroup input.form-control, .inputGroup select.form-select {
+	width: 92%;
+	height: 35px;
+	display: inline;
+	font-size: 0.85rem;
+	vertical-align: middle;
+}
+
+.inputGroup2 input.form-control {
+	width: 73%;
+	height: 35px;
+	display: inline;
+	font-size: 0.85rem;
+	vertical-align: middle;
+}
+
+.inputGroup input.btn, .inputGroup2 input.btn {
+	height: 35px;
+	font-size: 0.85rem;
+}
+
+.btn-primary {
+	background-color: #109DF7;
+}
+
+.btn-primary:hover {
+	background-color: #0d6efd;
+}
+
+/* test 1 - encoding test */
+table.encode_type {
+	margin-bottom: 1rem;
+}
+
+table.encode_type td {
+	width: 150px;
+}
+
+/* test 3 - sql injection test */
+table.sql_type1 {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+table.sql_type1 td:not(:last-child) {
+	width: 44%;
+}
+
+table.sql_type1 td:last-child {
+	width: 7%;
+	padding-left: 2px;
+}
+
+input#data4-1.form-control, input#data4-2.form-control, input#button4.btn {
+	font-size: 0.85rem;
+}
+
+/* test 15 - csrf test */
+table.csrf_type {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+table.csrf_type td:not(:last-child) {
+	width: 44%;
+}
+
+table.csrf_type td:last-child {
+	width: 7%;
+	padding-left: 2px;
+}
+
+input#data15.form-control, input#button15.btn {
+	font-size: 0.85rem;
+}
+
+#point {
+	margin: 0;
+	font-size: 0.875rem;
+}
+
+input#button25 {
+	background-color: #ffffff;
+	border: 0;
+	padding: 0;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+input#button25:hover {
+	color: #109DF7;
+}
+
+/* test 7 - encrypt test */
+table.encrypt_type {
+	margin-bottom: 1rem;
+}
+
+table.encrypt_type td {
+	width: 150px;
+}
+
+/* test 9 - secure cookie test */
+table.securecookie_type {
+	margin-bottom: 1rem;
+}
+
+table.securecookie_type td {
+	width: 150px;
+}
+
+/* test 10 - authentication test */
+table.authentication_type {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+table.authentication_type td {
+	width: 150px;
+}
+
+table.authentication_type td:not(:last-child) {
+	width: 44%;
+}
+
+table.authentication_type td:last-child {
+	width: 7%;
+	padding-left: 2px;
+}
+
+input#data10-1.form-control, input#data10-2.form-control, input#button10.btn {
+	font-size: 0.85rem;
+}
+
+/* test 12 - access control test */
+table.access_control_type1, table.access_control_type2 {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+table.access_control_type1 td, table.access_control_type2 td {
+	width: 150px;
+}
+
+table.access_control_type1 td:not(:last-child), table.access_control_type2 td:not(:last-child) {
+	width: 44%;
+}
+
+table.access_control_type1 td:last-child, table.access_control_type2 td:last-child {
+	width: 7%;
+	padding-left: 2px;
+}
+
+input#data12.form-control, input#button12.btn {
+	font-size: 0.85rem;
+}
+
+/* test 13 - exception test */
+table.exception_type {
+	margin-bottom: 1rem;
+}
+
+table.exception_type td {
+	width: 400px;
+}
+
+/* test 17 - session data test */
+table.session_data_type {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+table.session_data_type td {
+	width: 150px;
+}
+
+table.session_data_type td:not(:last-child) {
+	width: 44%;
+}
+
+table.session_data_type td:last-child {
+	width: 7%;
+	padding-left: 2px;
+}
+
+input#name.form-control, input#phone.form-control, input#button17.btn {
+	font-size: 0.85rem;
+}
+
+/* test 30 - encapsulation test */
+table.encap_type {
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+table.encap_type td {
+	width: 150px;
+}
+
+table.encap_type td:not(:last-child) {
+	width: 44%;
+}
+
+table.encap_type td:last-child {
+	width: 7%;
+	padding-left: 2px;
+}
+
+select#data30.form-select, input#data30.form-control, input#button30.btn {
+	font-size: 0.85rem;
+	height: 34px;
+}
+
+/* test 31 - important data test */
+p#subcomment {
+	font-weight: 600;
+}
+
+p#notice {
+	color: #F94284; 
+}

@@ -1,0 +1,131 @@
+body {
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+}
+
+/* board list */
+/* search */
+div.searchBar {
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 1rem;
+}
+
+.form-select {
+	width: 88px;
+	height: 28px;
+	display: inline;
+}
+
+.form-select-sm {
+	font-size: 0.75rem;
+}
+
+input#keyword.form-control {
+	width: 200px;
+	height: 28px;
+	display: inline;
+	font-size: 0.75rem;
+}
+
+.searchBar > form > input.btn {
+	font-size: 0.8rem;
+	height: 28px;
+	background-color: #109DF7;
+	border: 0;
+}
+
+.searchBar > form > input.btn:hover {
+	background-color: #0d6efd;
+}
+
+/* list table */
+.thead-style {
+	background-color: #f7f7f7;
+}
+
+th {
+	font-size: 0.825rem;
+	text-align: center;
+}
+
+td {
+	font-size: 0.75rem;
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 0;
+}
+
+td.idx {
+	width: 5%;
+}
+
+td.subject {
+	text-align: left;
+	vertical-align: middle;
+	width: 40%;
+}
+
+td.subject p {
+	margin: 0;
+}
+
+td.subject a:hover {
+	color: #109DF7;
+}
+
+td.writer {
+	width: 10%;
+}
+
+td.comment{
+	width: 5%;
+}
+
+td.hitcount{
+	width: 5%;
+}
+
+td.recommendcount{
+	width: 5%;
+}
+
+td.writeDate{
+	width: 15%;
+}
+
+/* paging */
+#pagination a, #pagination span{
+	font-size: 0.7rem;
+}
+
+#pagination a:hover {
+	color: #109DF7;
+}
+
+/* buttons */
+#btngroup {
+	margin-top: 1rem;
+	text-align: right;
+}
+
+#btngroup input.btn {
+	font-size: 0.825rem;
+	background-color: #109DF7;
+	border: 0;
+}
+
+#btngroup input.btn-primary:hover {
+	background-color: #0d6efd;
+}
+
+A:link    { color: black; text-decoration:none; }
+A:visited { color: black; text-decoration:none; }
+A:active  { color: black; text-decoration:none; }
+A:hover   { color: #666666; text-decoration:none; }
+
+A.page:link    { font-size: 11pt; color: black; text-decoration:none; }
+A.page:visited { font-size: 11pt; color: black; text-decoration:none; }
+A.page:active  { font-size: 11pt; color: black; text-decoration:none; }
+A.page:hover   { font-size: 11pt; color: #666666; text-decoration:none; }

@@ -1,0 +1,70 @@
+/* member modify */
+#contents {
+	margin: 0 auto;
+}
+
+h3 {
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+	text-align: center;
+	font-weight: 700;
+	margin-bottom: 2rem;
+}
+
+/* member modify style */
+.memberModify {
+	width: 500px;
+	margin: 0 auto;
+}
+
+th, td {
+	font-size: 0.875rem;
+	font-family: 'NEXON Lv1 Gothic OTF', '맑은고딕', sans-serif, tahoma, gulim;
+}
+
+td {
+	height: 40px;
+}
+
+.memberModify td.td01 {
+	padding-left: 0.5rem;
+	width: 30%;
+}
+
+.memberModify td > input.form-control {
+	height: 30px;
+}
+
+.memberModify input#userId.form-control,
+.memberModify input#userName.form-control,
+.memberModify input#userPw.form-control,
+.memberModify input#oldUserPw.form-control,
+.memberModify input#userPwCheck.form-control {
+	font-size: 0.875rem;
+}
+
+/* buttons */
+.mbtnGroup {
+	margin-top: 1.5rem;
+	text-align: center;
+}
+
+.mbtnGroup > input.btn-secondary {
+	margin-right: 0.5rem;
+	font-size: 0.875rem;
+	background-color: #b9b9b9;
+	border: 0;
+}
+
+.mbtnGroup > input.btn-secondary:hover {
+	background-color: #6c757d;
+}
+
+.mbtnGroup > input.btn-primary {
+	font-size: 0.875rem;
+	background-color: #109DF7;
+	border: 0;
+}
+
+.mbtnGroup > input.btn-primary:hover {
+	background-color: #0d6efd;
+}

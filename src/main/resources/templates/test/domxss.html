@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>DOM XSS 테스트</title>
+</head>
+
+<th:block layout:fragment="custom_js">
+	<script th:inline="javascript">
+		function onClickString() {
+			var a = document.URL;
+			a = unescape(a);
+			document.write(a.substring(a.indexOf("message=") + 8, a.length));
+			if(!alert("테스트 페이지로 돌아갑니다.")) location.href = "/test/test?no=0";
+		}
+	</script>
+</th:block>
+
+<body>
+	<div layout:fragment="content">
+		<h3>DOM XSS 테스트</h3>
+		<div class="domxsstestbox">
+			<p>전달된 파라미터 값을 확인하려면 <strong th:onclick="onClickString();">여기</strong>를 클릭하세요</p>
+		</div>
+	</div>
+</body>
+
+</html>

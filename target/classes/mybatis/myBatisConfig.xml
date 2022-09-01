@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="kr.co.openeg.lab.login.model.LoginHistory"
+			alias="LoginHistory" />
+		<typeAlias
+			type="kr.co.openeg.lab.login.model.LoginSessionModel"
+			alias="LoginSessionModel" />
+		<typeAlias
+			type="kr.co.openeg.lab.board.model.BoardCommentModel"
+			alias="BoardCommentModel" />
+		<typeAlias type="kr.co.openeg.lab.board.model.BoardModel"
+			alias="BoardModel" />
+		<typeAlias type="kr.co.openeg.lab.member.model.MemberModel"
+			alias="MemberModel" />
+		<typeAlias
+			type="kr.co.openeg.lab.member.model.MemberSecurity"
+			alias="MemberSecurity" />
+	</typeAliases>
+</configuration>
